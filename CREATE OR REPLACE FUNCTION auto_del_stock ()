@@ -1,0 +1,7 @@
+CREATE OR REPLACE FUNCTION auto_del_stock ()  
+RETURNS TRIGGER AS $res$ 
+BEGIN  
+   delete from stock_data where create_time < (now() - interval '15 day');  
+	 return NULL;
+END;  
+$res$ LANGUAGE plpgsql;
